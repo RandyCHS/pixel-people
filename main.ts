@@ -1,7 +1,3 @@
-enum JacDacMessage {
-    hello = 49337,
-    message1 = 49434
-}
 enum ActionKind {
     Walking,
     Idle,
@@ -11,6 +7,10 @@ enum ActionKind {
     action_earthquake,
     idle,
     idle_game
+}
+enum JacDacMessage {
+    hello = 49337,
+    message1 = 49434
 }
 namespace myTiles {
     //% blockIdentity=images._tile
@@ -1617,22 +1617,6 @@ game.onUpdate(function () {
     jacdac.sendMessage(JacDacMessage.message1)
 })
 forever(function () {
-    pause(1000)
-    for (let value7 of sprites.allOfKind(SpriteKind.Player)) {
-        if (sprites.readDataBoolean(value7, "moveable") == true) {
-            sprites.setDataNumber(value7, "moveset", randint(0, 2))
-            if (sprites.readDataNumber(value7, "moveset") == 1) {
-                value7.vx = 25
-            }
-            if (sprites.readDataNumber(value7, "moveset") == 2) {
-                value7.vx = -25
-            }
-            pause(randint(100, 2000))
-            value7.vx = 0
-        }
-    }
-})
-forever(function () {
     pause(30000)
     for (let value8 of sprites.allOfKind(SpriteKind.Player)) {
         if (sprites.readDataBoolean(value8, "moveable") == true) {
@@ -1649,6 +1633,22 @@ forever(function () {
                     sprites.setDataBoolean(value8, "moveable", true)
                 }
             }
+        }
+    }
+})
+forever(function () {
+    pause(1000)
+    for (let value7 of sprites.allOfKind(SpriteKind.Player)) {
+        if (sprites.readDataBoolean(value7, "moveable") == true) {
+            sprites.setDataNumber(value7, "moveset", randint(0, 2))
+            if (sprites.readDataNumber(value7, "moveset") == 1) {
+                value7.vx = 25
+            }
+            if (sprites.readDataNumber(value7, "moveset") == 2) {
+                value7.vx = -25
+            }
+            pause(randint(100, 2000))
+            value7.vx = 0
         }
     }
 })
